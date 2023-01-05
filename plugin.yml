@@ -1,0 +1,6 @@
+name: GateWarpPlugin
+version: 1.0.0
+main: noahasu\GateWarpPlugin\Main
+api: 4.0.8
+load: POSTWORLD
+author: noahasu
