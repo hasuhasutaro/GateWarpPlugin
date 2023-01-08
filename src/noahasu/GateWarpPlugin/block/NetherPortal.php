@@ -4,17 +4,11 @@ namespace noahasu\GateWarpPlugin\block;
 use Exception;
 use noahasu\GateWarpPlugin\block\tile\NetherPortal as TileNetherPortal;
 use noahasu\GateWarpPlugin\form\CreatePortalForm;
-use pocketmine\block\Block;
-use pocketmine\block\BlockBreakInfo;
-use pocketmine\block\BlockIdentifier;
-use pocketmine\block\MonsterSpawner;
 use pocketmine\entity\Entity;
 use pocketmine\block\NetherPortal as VanillaPortal;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
-use pocketmine\Server;
-use pocketmine\world\BlockTransaction;
 
 class NetherPortal extends VanillaPortal {
 
@@ -27,7 +21,7 @@ class NetherPortal extends VanillaPortal {
         $world -> scheduleDelayedBlockUpdate($this->position, 20 * 1);
     }
 
-    public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null): bool
+    public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []): bool
     {
         if($player === null) return true;
         $tile = $this -> position -> getWorld() -> getTile($this -> position);

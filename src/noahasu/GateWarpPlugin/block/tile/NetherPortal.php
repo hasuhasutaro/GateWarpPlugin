@@ -14,17 +14,8 @@ class NetherPortal extends Tile {
     private const TAG_TELEPORT_WORLD = 'teleportWorld';
     private ?Location $loc = null;
 
-    private ?int $locx = null;
-    private ?int $locy = null;
-    private ?int $locz = null;
-    private ?string $worldname = null;
-
     public function setTeleportLocation(Location $loc) : void {
         $this -> loc = $loc;
-        $this -> locx = $loc -> x;
-        $this -> locy = $loc -> y;
-        $this -> locz = $loc -> z;
-        $this -> worldname = $loc -> getWorld() -> getFolderName();
     }
 
     public function getTeleportLocation() : ?Location {
@@ -54,9 +45,9 @@ class NetherPortal extends Tile {
     protected function writeSaveData(CompoundTag $nbt): void
     {
         if($this -> loc === null) return;
-        $nbt -> setFloat(self::TAG_TELEPORT_X, $this -> locx);
-        $nbt -> setFloat(self::TAG_TELEPORT_Y, $this -> locy);
-        $nbt -> setFloat(self::TAG_TELEPORT_Z, $this -> locz);
-        $nbt -> setString(self::TAG_TELEPORT_WORLD, $this -> worldname);
+        $nbt -> setFloat(self::TAG_TELEPORT_X, $this -> loc -> x);
+        $nbt -> setFloat(self::TAG_TELEPORT_Y, $this -> loc -> y);
+        $nbt -> setFloat(self::TAG_TELEPORT_Z, $this -> loc -> z);
+        $nbt -> setString(self::TAG_TELEPORT_WORLD, $this -> loc -> getWorld() -> getFolderName());
     }
 }
